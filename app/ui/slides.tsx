@@ -78,18 +78,16 @@ export function Slides(){
             <div className="flex items-center"> 
             <ButtonIcon content="Trước" icon="chevron_left" onClick={handlePrev} delay/>
            <img
-  className={
-    current.image?.endsWith('.gif')
-      ? 'w-[330px]'
-      : 'w-[247px] m-[41px]'
-  }
-  alt={current.title}
-  loading="lazy"
-  role="img"
-  src={current.image}
-/>
-
-
+              className={
+                current.image?.endsWith('.gif')
+                  ? 'w-[330px]'
+                  : 'w-[248px] m-[41px]'
+                    }
+                    alt={current.title}
+                    loading="lazy"
+                    role="img"
+                    src={current.image}
+                  />  
             <ButtonIcon content="Tiếp theo" icon="chevron_right" onClick={handleNext} delay/>
             </div>
             <AnimatePresence mode="wait">

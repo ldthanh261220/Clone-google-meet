@@ -5,6 +5,8 @@ import { lusitana } from '@/app/ui/fonts'
 import { Button } from "./ui/button";
 import { Slides } from "./ui/slides";
 import { ButtonIcon } from "./ui/button-icon";
+import { DropdownButtonIcon } from "./ui/DropdownButtonIcon";
+
 export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState("");
@@ -24,7 +26,17 @@ export default function Home() {
   });
   const dayOfWeek = ["CN", "Th 2", "Th 3", "Th 4", "Th 5", "Th 6", "Th 7"];
   const dateString = `${dayOfWeek[currentTime.getDay()]}, ${currentTime.getDate()} thg ${currentTime.getMonth() + 1}`;
-  
+  const MySupportmenu =() =>(
+    <div className="rounded-xl shadow-lg p-2 bg-white border w-48">
+                <ul>
+                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Trợ giúp</li>
+                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Đào tạo</li>
+                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Điều khoản dịch vụ</li>
+                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Chính sách quyền riêng tư</li>
+                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Bản tóm tắt điều khoản</li>
+                </ul>
+            </div>
+  )
   return (
     <div>
     <div className="flex px-2">
@@ -38,6 +50,11 @@ export default function Home() {
         <span>{timeString}</span>
         <span className="mx-1"> • </span>
         <span className="mr-3">{dateString}</span>
+        <DropdownButtonIcon
+          icon="help"
+          menu={<MySupportmenu />}
+          tooltip="Hỗ trợ"
+        />
         <ButtonIcon content="Hỗ trợ" icon="help"/>
         <ButtonIcon content="Báo cáo sự cố" icon="feedback"/>
         <ButtonIcon content="Cài đặt" icon="settings"/>
