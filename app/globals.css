@@ -3,6 +3,7 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-sans: Arial, sans-serif;
 }
 
 @theme inline {
@@ -43,4 +44,7 @@ body {
 }
 .animate-fadeIn {
   animation: fadeIn 0.5s ease-in forwards;
+}
+.font-arial{
+  font-family: var(--font-sans)
 }

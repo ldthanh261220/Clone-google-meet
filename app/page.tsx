@@ -2,11 +2,12 @@
 import { useEffect, useState,useRef  } from "react";
 import Image from "next/image";
 import { lusitana } from '@/app/ui/fonts'
-import { Button } from "./ui/button";
+import { Button } from "./ui/Button/button";
 import { Slides } from "./ui/slides";
-import { ButtonIcon } from "./ui/button-icon";
-import { DropdownButtonIcon } from "./ui/DropdownButtonIcon";
-
+import { ButtonIcon } from "./ui/Button/button-icon";
+import { DropdownButtonIcon } from "./ui/Button/DropdownButtonIcon";
+import { DropdownButton } from "./ui/Button/DropdownButton";
+import { StartMeetingItem } from "./ui/StartMeetingItem";
 export default function Home() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [inputValue, setInputValue] = useState("");
@@ -27,15 +28,30 @@ export default function Home() {
   const dayOfWeek = ["CN", "Th 2", "Th 3", "Th 4", "Th 5", "Th 6", "Th 7"];
   const dateString = `${dayOfWeek[currentTime.getDay()]}, ${currentTime.getDate()} thg ${currentTime.getMonth() + 1}`;
   const MySupportmenu =() =>(
-    <div className="rounded-xl shadow-lg p-2 bg-white border w-48">
-                <ul>
-                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Trợ giúp</li>
-                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Đào tạo</li>
-                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Điều khoản dịch vụ</li>
-                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Chính sách quyền riêng tư</li>
-                    <li className="px-2 py-1 hover:bg-gray-100 cursor-pointer">Bản tóm tắt điều khoản</li>
-                </ul>
-            </div>
+    <div className="shadow-[0px_4px_8px_rgba(0,0,0,0.5)] font-arial text-[16px] leading-6 tracking-tight font-normal py-2 text-black bg-white w-[280px]">
+      <ul>
+        <li className="px-4 h-12 flex items-center hover:bg-gray-100 cursor-pointer">Trợ giúp</li>
+        <li className="px-4 h-12 flex items-center hover:bg-gray-100 cursor-pointer">Đào tạo</li>
+        <li className="px-4 h-12 flex items-center hover:bg-gray-100 cursor-pointer">Điều khoản dịch vụ</li>
+        <li className="px-4 h-12 flex items-center hover:bg-gray-100 cursor-pointer">Chính sách quyền riêng tư</li>
+        <li className="px-4 h-12 flex items-center hover:bg-gray-100 cursor-pointer">Bản tóm tắt điều khoản</li>
+      </ul>
+    </div>
+  )
+  const NewMeetingMenu = ()=>(
+    <div className="shadow-[0px_4px_8px_rgba(0,0,0,0.5)] rounded-2xl font-arial text-[16px] leading-6 tracking-tight font-normal py-2 text-black bg-[#F1F3F4] ">
+      <ul>
+        <li className="px-4 h-12 flex items-center hover:bg-gray-200 cursor-pointer ">
+          <span className="material-symbols-outlined mr-2">link</span>
+          <span>Tạo một cuộc họp để sử dụng sau</span>
+        </li>
+        <StartMeetingItem/>
+        <li className="px-4 h-12 flex items-center hover:bg-gray-200 cursor-pointer ">
+          <span className="material-symbols-outlined mr-2">calendar_today</span>
+          <span>Lên lịch trong Lịch Google</span>
+        </li>
+      </ul>
+    </div>
   )
   return (
     <div>
@@ -55,7 +71,6 @@ export default function Home() {
           menu={<MySupportmenu />}
           tooltip="Hỗ trợ"
         />
-        <ButtonIcon content="Hỗ trợ" icon="help"/>
         <ButtonIcon content="Báo cáo sự cố" icon="feedback"/>
         <ButtonIcon content="Cài đặt" icon="settings"/>
       </div>
@@ -78,15 +93,16 @@ export default function Home() {
                 </span>
               </div>
               <div className="flex flex-wrap gap-4 my-4 items-center">
-                  <Button>
-                    <span className="material-symbols-outlined">
+                    <DropdownButton
+                      menu={<NewMeetingMenu />}
+                    >
+                      <span className="material-symbols-outlined">
                         video_call
                       </span>
                       <span>
                         Cuộc họp mới
                       </span>
-                    </Button>
-                  
+                    </DropdownButton>
                   <div className="flex items-center gap-2 p-3 rounded-2xl transition-colors border-2 border-gray-500 focus-within:border-blue-500">
                     <span className="material-symbols-outlined text-gray-500 mx -2 cursor-pointer"
                             onClick={() => inputRef.current?.focus()}

@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Button } from "./button";
-import { ButtonIcon } from "./button-icon";
+import { Button } from "./Button/button";
+import { ButtonIcon } from "./Button/button-icon";
 import { motion, AnimatePresence } from "framer-motion";
 
 export function Slides(){
