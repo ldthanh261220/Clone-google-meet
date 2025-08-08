@@ -44,7 +44,7 @@ export default function MeetingPage() {
       }
 
       // Kết nối WebSocket
-      socketRef.current = new WebSocket('ws://socket-meeting-server-production.up.railway.app');
+      socketRef.current = new WebSocket('wss://socket-meeting-server-production.up.railway.app');
       
       socketRef.current.onopen = () => {
         console.log('WebSocket connected');
